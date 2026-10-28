@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYY MEDIA - Bio Link 3D Minecraft</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Pixel Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Press Start 2P', 'VT323', monospace;
+            background-color: #f3f4f6;
+            background-image: 
+                radial-gradient(#e5e7eb 2px, transparent 2px),
+                linear-gradient(to right, rgba(255,140,0,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,140,0,0.05) 1px, transparent 1px);
+            background-size: 32px 32px, 16px 16px, 16px 16px;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        /* Pixel Text 3D Effects */
+        .pixel-shadow {
+            text-shadow: 
+                0px 3px 0 #475569,
+                0px 6px 0 #1e293b,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+        
+        .nametag-shadow {
+            text-shadow: 2px 2px 0px #000000;
+        }
+
+        .pixel-subtext {
+            font-family: 'Silkscreen', cursive;
+        }
+
+        /* Base Block Border Effect (Minecraft Block Style) */
+        .mc-button {
+            position: relative;
+            border-style: solid;
+            border-width: 4px;
+            box-shadow: 
+                0 8px 0 0 #1e293b,
+                0 12px 15px rgba(0,0,0,0.2);
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        /* Minecraft Block Themes for each platform */
+        .block-tiktok {
+            background: #1e293b; /* Slate 800 - Obsidian */
+            border-color: #475569 #0f172a #0f172a #334155;
+            box-shadow: inset -4px -4px 0px 0px #0f172a, 0 8px 0 0 #000000, 0 12px 15px rgba(0,0,0,0.2);
+        }
+        .block-youtube {
+            background: #dc2626; /* Red 600 - Redstone */
+            border-color: #ef4444 #7f1d1d #991b1b #f87171;
+            box-shadow: inset -4px -4px 0px 0px #991b1b, 0 8px 0 0 #7f1d1d, 0 12px 15px rgba(0,0,0,0.2);
+        }
+        .block-whatsapp {
+            background: #16a34a; /* Green 600 - Emerald/Slime */
+            border-color: #22c55e #14532d #166534 #4ade80;
+            box-shadow: inset -4px -4px 0px 0px #166534, 0 8px 0 0 #14532d, 0 12px 15px rgba(0,0,0,0.2);
+        }
+        .block-discord {
+            background: #4f46e5; /* Indigo 600 - Lapis Lazuli */
+            border-color: #6366f1 #312e81 #3730a3 #818cf8;
+            box-shadow: inset -4px -4px 0px 0px #3730a3, 0 8px 0 0 #312e81, 0 12px 15px rgba(0,0,0,0.2);
+        }
+        .block-instagram {
+            background: #c026d3; /* Fuchsia 600 - Amethyst */
+            border-color: #d946ef #701a75 #86198f #e879f9;
+            box-shadow: inset -4px -4px 0px 0px #86198f, 0 8px 0 0 #701a75, 0 12px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hover & Tilt Effect */
+        .mc-button:hover {
+            transform: translateY(-3px) rotate(-0.5deg);
+            filter: brightness(1.1);
+        }
+
+        /* Long press / active enlargement animation */
+        .mc-button.holding, .mc-button:active {
+            transform: scale(1.08) rotate(0deg) !important;
+            filter: brightness(1.2);
+            /* Reset bottom shadow to look 'pressed in' slightly but mostly scaled */
+            box-shadow: 
+                inset -6px -6px 0px 0px rgba(0,0,0,0.4),
+                0 15px 25px rgba(0,0,0,0.4) !important;
+        }
+
+        /* Block Border Effect (Minecraft Button Style) */
+        .mc-button {
+            position: relative;
+            background: #e2e8f0;
+            border-style: solid;
+            border-width: 4px;
+            border-color: #ffffff #94a3b8 #64748b #ffffff;
+            box-shadow: 
+                inset -4px -4px 0px 0px #cbd5e1,
+                0 8px 0 0 #475569,
+                0 12px 15px rgba(0,0,0,0.15);
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Hover & Tilt Effect */
+        .mc-button:hover {
+            transform: translateY(-3px) rotate(-0.5deg);
+            border-color: #ffffff #cbd5e1 #475569 #ffffff;
+        }
+
+        /* Long press / active enlargement animation */
+        .mc-button.holding, .mc-button:active {
+            transform: scale(1.1) rotate(0deg) !important;
+            box-shadow: 
+                inset -4px -4px 0px 0px #fdba74,
+                0 14px 0 0 #c2410c,
+                0 20px 25px rgba(255,140,0,0.3);
+            border-color: #fff7ed #ea580c #9a3412 #fff7ed;
+            background: #ffedd5;
+        }
+
+        /* 3D Isometric tilted Floating Cube */
+        .cube-container {
+            perspective: 800px;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(25deg) rotateZ(5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .cube-float-1 {
+            animation: float 4s ease-in-out infinite alternate;
+        }
+        .cube-float-2 {
+            animation: float 5s ease-in-out infinite alternate-reverse;
+        }
+        .cube-float-3 {
+            animation: float 3.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: rotateX(-20deg) rotateY(25deg) rotateZ(5deg) translateY(0px); }
+            100% { transform: rotateX(-15deg) rotateY(35deg) rotateZ(8deg) translateY(-15px); }
+        }
+
+        /* Continuous Button Floating Animation */
+        @keyframes float-btn {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .float-btn-1 { animation: float-btn 4s ease-in-out infinite; }
+        .float-btn-2 { animation: float-btn 5s ease-in-out infinite 1s; }
+        .float-btn-3 { animation: float-btn 4.5s ease-in-out infinite 0.5s; }
+
+        /* CSS 3D Cube Faces */
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(0,0,0,0.15);
+            image-rendering: pixelated;
+        }
+        .face-top {
+            transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2));
+            background: #ff9800;
+        }
+        .face-front {
+            transform: translateZ(calc(var(--cube-size) / 2));
+            background: #f57c00;
+        }
+        .face-right {
+            transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2));
+            background: #e65100;
+        }
+        .face-left {
+            transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2));
+            background: #fb8c00;
+        }
+        .face-bottom {
+            transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2));
+            background: #bf360c;
+        }
+
+        /* Cube Types (Stone, Dirt, Gold) */
+        .face-stone { background: #94a3b8; border-color: #64748b; }
+        .face-dirt { background: #8B4513; border-color: #5c2e0b; }
+        .face-grass-top { background: #4ade80; border-color: #166534; }
+        .face-gold { background: #fbbf24; border-color: #d97706; }
+
+        /* Platform specific 3D icon box styles */
+        .platform-box {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-12deg) rotateY(18deg) rotateZ(-3deg);
+            box-shadow: 4px 6px 0px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .mc-button:hover .platform-box {
+            transform: rotateX(-5deg) rotateY(25deg) rotateZ(2deg) scale(1.05);
+        }
+
+        /* Tilted Card layout staggered angles */
+        .tilt-left {
+            transform: rotate(-3deg);
+        }
+        .tilt-right {
+            transform: rotate(3deg);
+        }
+        .tilt-left-sm {
+            transform: rotate(-2deg);
+        }
+        
+        .tilt-right-sm {
+            transform: rotate(2deg);
+        }
+
+        /* Orange MC Arrow Button */
+        .mc-arrow-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                inset -3px -3px 0 0 rgba(0,0,0,0.2),
+                inset 3px 3px 0 0 rgba(255,255,255,0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Custom Modal Backdrop */
+        .modal-blur {
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 relative text-slate-800">
+
+    <!-- Decorative 3D Floating Minecraft Blocks (Background Floating Elements) -->
+    <!-- Top Left Cube (Orange/Magma) -->
+    <div class="fixed top-6 left-4 md:left-16 w-12 h-12 md:w-16 md:h-16 cube-container cube-float-1 z-0 opacity-80 pointer-events-none" style="--cube-size: 48px;">
+        <div class="cube">
+            <div class="face face-top border-white border-b-2 bg-orange-400"></div>
+            <div class="face face-front bg-orange-500"></div>
+            <div class="face face-right bg-orange-600"></div>
+            <div class="face face-left bg-orange-300"></div>
+        </div>
+    </div>
+
+    <!-- Top Right Cube (Gold) -->
+    <div class="fixed top-12 right-4 md:right-20 w-14 h-14 md:w-20 md:h-20 cube-container cube-float-2 z-0 opacity-70 pointer-events-none" style="--cube-size: 56px;">
+        <div class="cube">
+            <div class="face face-top face-gold"></div>
+            <div class="face face-front face-gold"></div>
+            <div class="face face-right face-gold border-b-4 border-yellow-700"></div>
+        </div>
+    </div>
+
+    <!-- Middle Left Cube (Stone) -->
+    <div class="fixed top-1/2 -left-4 w-10 h-10 cube-container cube-float-3 z-0 opacity-60 pointer-events-none" style="--cube-size: 40px;">
+        <div class="cube">
+            <div class="face face-top face-stone border-b-2 border-slate-400"></div>
+            <div class="face face-front face-stone"></div>
+            <div class="face face-right face-stone"></div>
+        </div>
+    </div>
+    
+    <!-- Middle Right Cube (Dirt/Grass) -->
+    <div class="fixed bottom-1/3 right-2 md:right-10 w-12 h-12 cube-container cube-float-1 z-0 opacity-70 pointer-events-none" style="--cube-size: 48px;">
+        <div class="cube">
+            <div class="face face-top face-grass-top"></div>
+            <div class="face face-front face-dirt border-t-4 border-green-500"></div>
+            <div class="face face-right face-dirt border-t-4 border-green-500"></div>
+        </div>
+    </div>
+
+    <!-- Bottom Corner Minecraft Dirt/Grass Stack Decorations (Isometric Corner Blocks) -->
+    <div class="fixed -bottom-10 -left-10 w-40 h-40 z-0 pointer-events-none opacity-80 hidden sm:block">
+        <div class="w-24 h-24 bg-orange-500 border-4 border-slate-900 transform rotate-12 relative shadow-2xl">
+            <div class="absolute top-0 left-0 right-0 h-6 bg-amber-200 border-b-4 border-slate-900"></div>
+        </div>
+        <div class="w-20 h-20 bg-amber-600 border-4 border-slate-900 transform -rotate-6 -mt-10 ml-12"></div>
+    </div>
+
+    <div class="fixed -bottom-10 -right-10 w-40 h-40 z-0 pointer-events-none opacity-80 hidden sm:block">
+        <div class="w-28 h-28 bg-orange-500 border-4 border-slate-900 transform -rotate-12 relative shadow-2xl">
+            <div class="absolute top-0 left-0 right-0 h-8 bg-slate-100 border-b-4 border-slate-900"></div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-md z-10 flex flex-col items-center my-auto py-6">
+
+        <!-- Avatar / Editable Logo Header -->
+        <div class="flex flex-col items-center mb-5 mt-4">
+            <div class="relative group transition-transform z-10" id="logoContainer" title="Logo">
+                <!-- Minecraft Nametag for Username (Pindah ke Atas Logo) -->
+                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/80 px-3 py-1.5 rounded border-2 border-slate-600 shadow-xl flex items-center gap-2 z-20 hover:scale-105 transition w-max">
+                    <i class="fa-solid fa-user text-green-400 text-[10px]"></i>
+                    <span id="mcUsernameDisplay" class="font-['Press_Start_2P'] text-[9px] sm:text-[10px] text-white nametag-shadow tracking-wider uppercase">Payy</span>
+                </div>
+                
+                <!-- 3D Voxel Frame for Avatar -->
+                <div class="w-24 h-24 sm:w-28 sm:h-28 bg-slate-800 p-1.5 rounded-lg border-4 border-white shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-300 relative">
+                    <!-- Inner Minecraft shadow block -->
+                    <div class="w-full h-full overflow-hidden bg-orange-500 relative flex items-center justify-center border-2 border-slate-900">
+                        <img id="profileLogo" src="https://i.ibb.co.com/jvNKfdL7/Screenshot-20261028-122029-1.jpg alt="Rapz Media Logo" class="w-full h-full object-cover image-pixelated">
+                    </div>
+                    <!-- Camera Icon Badge on Hover (Hidden by default, shown only in admin mode) -->
+                    <div id="cameraOverlay" class="absolute inset-0 bg-black/60 rounded flex flex-col items-center justify-center opacity-0 transition-opacity hidden">
+                        <i class="fa-solid fa-camera text-white text-xl mb-1"></i>
+                        <span class="text-[8px] text-white text-center font-bold">GANTI LOGO</span>
+                    </div>
+                    <!-- 3D Decorative Pixel Bits around Avatar -->
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-orange-500 border-2 border-slate-900 transform rotate-45 animate-pulse"></div>
+                    <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-white border-2 border-slate-900 transform rotate-12"></div>
+                </div>
+                <!-- Hidden File Input -->
+                <input type="file" id="logoInput" accept="image/*" class="hidden">
+            </div>
+        </div>
+
+        <!-- Header Title Section -->
+        <div class="text-center mb-6">
+            <h1 class="text-4xl sm:text-5xl text-slate-800 pixel-shadow tracking-wider uppercase font-bold transform -rotate-2">
+                Pay
+            </h1>
+            <p class="pixel-subtext text-xs sm:text-sm text-slate-800 mt-4 font-bold tracking-wide bg-slate-200/90 px-4 py-1.5 rounded border-2 border-slate-400 inline-block shadow-md transform rotate-1">
+                 Semua Link Ada Disini
+            </p>
+        </div>
+
+        <!-- Action Control Buttons (Edit Links / Customizer) -->
+        <div id="adminPanel" class="w-full flex justify-end mb-3 px-1 hidden">
+            <button id="openSettingsBtn" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1.5 rounded border-2 border-slate-600 shadow flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-gear text-orange-400"></i> Edit Link & Logo
+            </button>
+        </div>
+
+        <!-- Links Container -->
+        <div class="w-full flex flex-col gap-4">
+
+            <!-- Link 1: TikTok -->
+            <a href="https://tiktok.com" target="_blank" class="mc-card-link float-btn-1" data-id="tiktok">
+                <div class="mc-button block-tiktok tilt-left w-full p-3 sm:p-4 rounded-xl flex items-center justify-between text-white">
+                    <div class="flex items-center gap-3.5">
+                        <!-- 3D Icon Box -->
+                        <div class="platform-box w-12 h-12 sm:w-14 sm:h-14 bg-slate-900 border-2 border-slate-600 rounded-lg flex items-center justify-center shrink-0">
+                            <i class="fa-brands fa-tiktok text-2xl text-white drop-shadow-[2px_2px_0px_#ff0050]"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-sm sm:text-base font-bold tracking-tight leading-snug font-mono nametag-shadow text-white">TikTok</span>
+                            <span class="pixel-subtext text-[10px] sm:text-xs text-white drop-shadow-[1px_1px_0px_#000] font-semibold mt-0.5">Follow & Cek Video Terbaru</span>
+                        </div>
+                    </div>
+                    <!-- Right Arrow Button -->
+                    <div class="mc-arrow-btn w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-white shrink-0 ml-2">
+                        <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Link 2: YouTube -->
+            <a href="https://youtube.com" target="_blank" class="mc-card-link float-btn-2" data-id="youtube">
+                <div class="mc-button block-youtube tilt-right w-full p-3 sm:p-4 rounded-xl flex items-center justify-between text-white">
+                    <div class="flex items-center gap-3.5">
+                        <!-- 3D Icon Box -->
+                        <div class="platform-box w-12 h-12 sm:w-14 sm:h-14 bg-red-700 border-2 border-red-500 rounded-lg flex items-center justify-center shrink-0 text-white">
+                            <i class="fa-brands fa-youtube text-2xl drop-shadow-[2px_2px_0px_rgba(0,0,0,0.5)]"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-sm sm:text-base font-bold tracking-tight leading-snug font-mono nametag-shadow text-white">YouTube</span>
+                            <span class="pixel-subtext text-[10px] sm:text-xs text-white drop-shadow-[1px_1px_0px_#000] font-semibold mt-0.5">Subscribe & Tonton Video</span>
+                        </div>
+                    </div>
+                    <!-- Right Arrow Button -->
+                    <div class="mc-arrow-btn w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-white shrink-0 ml-2">
+                        <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Link 3: Saluran WhatsApp -->
+            <a href="https://whatsapp.com" target="_blank" class="mc-card-link float-btn-3" data-id="whatsapp">
+                <div class="mc-button block-whatsapp tilt-left-sm w-full p-3 sm:p-4 rounded-xl flex items-center justify-between text-white">
+                    <div class="flex items-center gap-3.5">
+                        <!-- 3D Icon Box -->
+                        <div class="platform-box w-12 h-12 sm:w-14 sm:h-14 bg-green-700 border-2 border-green-400 rounded-lg flex items-center justify-center shrink-0 text-white">
+                            <i class="fa-brands fa-whatsapp text-3xl drop-shadow-[2px_2px_0px_rgba(0,0,0,0.3)]"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-sm sm:text-base font-bold tracking-tight leading-snug font-mono nametag-shadow text-white">Saluran WhatsApp</span>
+                            <span class="pixel-subtext text-[10px] sm:text-xs text-white drop-shadow-[1px_1px_0px_#000] font-semibold mt-0.5">Update, Info & File Lainnya</span>
+                        </div>
+                    </div>
+                    <!-- Right Arrow Button -->
+                    <div class="mc-arrow-btn w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-white shrink-0 ml-2">
+                        <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Link 4: Discord (NEW) -->
+            <a href="https://discord.com" target="_blank" class="mc-card-link float-btn-1" data-id="discord">
+                <div class="mc-button block-discord tilt-right-sm w-full p-3 sm:p-4 rounded-xl flex items-center justify-between text-white">
+                    <div class="flex items-center gap-3.5">
+                        <!-- 3D Icon Box -->
+                        <div class="platform-box w-12 h-12 sm:w-14 sm:h-14 bg-indigo-700 border-2 border-indigo-400 rounded-lg flex items-center justify-center shrink-0 text-white">
+                            <i class="fa-brands fa-discord text-2xl drop-shadow-[2px_2px_0px_rgba(0,0,0,0.4)]"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-sm sm:text-base font-bold tracking-tight leading-snug font-mono nametag-shadow text-white">Discord</span>
+                            <span class="pixel-subtext text-[10px] sm:text-xs text-white drop-shadow-[1px_1px_0px_#000] font-semibold mt-0.5">Join Komunitas Server</span>
+                        </div>
+                    </div>
+                    <!-- Right Arrow Button -->
+                    <div class="mc-arrow-btn w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-white shrink-0 ml-2">
+                        <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Link 5: Instagram -->
+            <a href="https://instagram.com" target="_blank" class="mc-card-link float-btn-2" data-id="instagram">
+                <div class="mc-button block-instagram tilt-left w-full p-3 sm:p-4 rounded-xl flex items-center justify-between text-white">
+                    <div class="flex items-center gap-3.5">
+                        <!-- 3D Icon Box -->
+                        <div class="platform-box w-12 h-12 sm:w-14 sm:h-14 bg-fuchsia-800 border-2 border-fuchsia-400 rounded-lg flex items-center justify-center shrink-0 text-white">
+                            <i class="fa-brands fa-instagram text-2xl drop-shadow-[2px_2px_0px_rgba(0,0,0,0.4)]"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-sm sm:text-base font-bold tracking-tight leading-snug font-mono nametag-shadow text-white">Instagram</span>
+                            <span class="pixel-subtext text-[10px] sm:text-xs text-white drop-shadow-[1px_1px_0px_#000] font-semibold mt-0.5">Foto, Story & Update</span>
+                        </div>
+                    </div>
+                    <!-- Right Arrow Button -->
+                    <div class="mc-arrow-btn w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-white shrink-0 ml-2">
+                        <i class="fa-solid fa-chevron-right text-base sm:text-lg"></i>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Minecraft Pixel Divider & Footer -->
+        <div class="w-full flex flex-col items-center mt-8">
+            <div class="flex items-center justify-center gap-2 w-full mb-3">
+                <div class="h-1 bg-orange-500 flex-1 rounded"></div>
+                <span class="text-[10px] font-bold text-orange-600 tracking-widest uppercase px-2 font-mono">PAYY</span>
+                <div class="h-1 bg-orange-500 flex-1 rounded"></div>
+            </div>
+            <p class="text-[9px] text-slate-400 text-center uppercase tracking-wider">
+                &copy; 2027 Pay &bull; Minecraft
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Custom Modal for Link Customization -->
+    <div id="settingsModal" class="fixed inset-0 bg-slate-900/70 modal-blur z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-100 border-4 border-slate-900 rounded-xl p-5 w-full max-w-sm shadow-2xl relative">
+            <div class="flex justify-between items-center mb-4 border-b-2 border-slate-300 pb-2">
+                <h3 class="text-xs font-bold text-slate-900 uppercase flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-orange-500"></i> Edit Bio Link
+                </h3>
+                <button id="closeSettingsBtn" class="text-slate-500 hover:text-red-500 text-lg font-bold">&times;</button>
+            </div>
+
+            <form id="linksForm" class="space-y-3">
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Username Minecraft</label>
+                    <input type="text" id="usernameInput" class="w-full text-xs p-2 border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono" placeholder="RapzPlayer">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">URL TikTok</label>
+                    <input type="url" id="tiktokUrlInput" class="w-full text-xs p-2 border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono" placeholder="https://tiktok.com/@username">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">URL YouTube</label>
+                    <input type="url" id="youtubeUrlInput" class="w-full text-xs p-2 border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono" placeholder="https://youtube.com/@channel">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">URL Saluran WhatsApp</label>
+                    <input type="url" id="whatsappUrlInput" class="w-full text-xs p-2 border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono" placeholder="https://whatsapp.com/channel/xxx">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">URL Discord</label>
+                    <input type="url" id="discordUrlInput" class="w-full text-xs p-2 border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono" placeholder="https://discord.gg/invitelink">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">URL Instagram</label>
+                    <input type="url" id="instagramUrlInput" class="w-full text-xs p-2 border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono" placeholder="https://instagram.com/username">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Upload Foto / Logo Baru</label>
+                    <input type="file" id="modalLogoInput" accept="image/*" class="w-full text-xs p-1.5 bg-white border-2 border-slate-400 rounded focus:border-orange-500 outline-none font-mono cursor-pointer">
+                    <p class="text-[8px] text-slate-500 mt-0.5 font-semibold">*Pilih gambar/foto langsung dari Galeri Anda</p>
+                </div>
+
+                <div class="pt-2 flex gap-2">
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs py-2.5 rounded border-2 border-orange-700 shadow uppercase tracking-wider">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions & Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Strict Scope & Error Handling (Anti-Crash)
+            try {
+                // Check Admin Mode via URL Parameter (?admin=true)
+                const urlParams = new URLSearchParams(window.location.search);
+                const isAdmin = urlParams.get('admin') === 'true';
+
+                // Elements Validation
+                const getEl = (id) => document.getElementById(id);
+                
+                const logoContainer = getEl('logoContainer');
+                const logoInput = getEl('logoInput');
+                const cameraOverlay = getEl('cameraOverlay');
+                const adminPanel = getEl('adminPanel');
+                const profileLogo = getEl('profileLogo');
+                const mcUsernameDisplay = getEl('mcUsernameDisplay');
+                const mcButtons = document.querySelectorAll('.mc-button');
+                const openSettingsBtn = getEl('openSettingsBtn');
+                const settingsModal = getEl('settingsModal');
+                const closeSettingsBtn = getEl('closeSettingsBtn');
+                const linksForm = getEl('linksForm');
+
+                // Default URLs
+                const defaultLinks = {
+                    username: "payy",
+                    tiktok: "https://tiktok.com/@payull5",
+                    youtube: "https://youtube.com",
+                    whatsapp: "https://whatsapp.com/channel/0029VbDSuIKIHphHuzeqxu2F",
+                    discord: "https://discord.gg/988fXWWux",
+                    instagram: "https://www.instagram.com/payullv?xtok=aWc1eWl4MXVsN25v",
+                    logo: profileLogo ? profileLogo.src : ""
+                };
+
+                // Robust LocalStorage parsing
+                let savedLinks = {};
+                try {
+                    const stored = localStorage.getItem('mc_bio_links');
+                    if (stored) {
+                        savedLinks = JSON.parse(stored);
+                    }
+                } catch (parseError) {
+                    console.warn('Data links corrupted. Resetting to defaults.', parseError);
+                    localStorage.removeItem('mc_bio_links');
+                }
+
+                const currentLinks = { ...defaultLinks, ...savedLinks };
+
+                // Robust Anti-XSS Sanitizer for Links & Images
+                function sanitizeUrl(url) {
+                    if (!url || typeof url !== 'string') return '#';
+                    const cleanUrl = url.trim();
+                    const lowerUrl = cleanUrl.toLowerCase();
+                    // Block malicious schemas completely
+                    if (lowerUrl.startsWith('javascript:') || 
+                        lowerUrl.startsWith('data:text/html') || 
+                        lowerUrl.startsWith('vbscript:')) {
+                        return '#';
+                    }
+                    return cleanUrl;
+                }
+
+                // Apply saved URLs to DOM safely
+                function applyUrls() {
+                    if (mcUsernameDisplay) {
+                        // Use textContent specifically to block HTML injection attacks
+                        mcUsernameDisplay.textContent = (currentLinks.username || "Player").substring(0, 16); 
+                    }
+                    
+                    const updateLink = (id, key) => {
+                        const el = document.querySelector(`[data-id="${id}"]`);
+                        if(el && currentLinks[key]) el.href = sanitizeUrl(currentLinks[key]);
+                    };
+
+                    updateLink('tiktok', 'tiktok');
+                    updateLink('youtube', 'youtube');
+                    updateLink('whatsapp', 'whatsapp');
+                    updateLink('discord', 'discord');
+                    updateLink('instagram', 'instagram');
+                    
+                    if(profileLogo && currentLinks.logo) {
+                        const safeLogo = sanitizeUrl(currentLinks.logo);
+                        if(safeLogo !== '#') {
+                            profileLogo.src = safeLogo;
+                        }
+                    }
+                }
+                applyUrls();
+
+                // Admin Features Initializer
+                if (isAdmin && adminPanel && logoContainer) {
+                    adminPanel.classList.remove('hidden');
+                    logoContainer.classList.add('cursor-pointer');
+                    logoContainer.setAttribute('title', 'Klik untuk ganti Logo/Foto');
+                    if(cameraOverlay) {
+                        cameraOverlay.classList.remove('hidden');
+                        cameraOverlay.classList.add('group-hover:opacity-100');
+                    }
+                    
+                    logoContainer.addEventListener('click', () => {
+                        if(logoInput) logoInput.click();
+                    });
+
+                    if(logoInput) {
+                        logoInput.addEventListener('change', (e) => {
+                            const file = e.target.files[0];
+                            if (file && file.type.startsWith('image/')) {
+                                const reader = new FileReader();
+                                reader.onload = function(event) {
+                                    if(profileLogo) profileLogo.src = event.target.result;
+                                    currentLinks.logo = event.target.result;
+                                    try {
+                                        localStorage.setItem('mc_bio_links', JSON.stringify(currentLinks));
+                                    } catch(err) {
+                                        console.error("Storage full or blocked", err);
+                                    }
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                    }
+                }
+
+                // Long Press Animation Logic
+                if (mcButtons) {
+                    mcButtons.forEach(btn => {
+                        const startPress = () => btn.classList.add('holding');
+                        const endPress = () => btn.classList.remove('holding');
+
+                        btn.addEventListener('mousedown', startPress);
+                        btn.addEventListener('mouseup', endPress);
+                        btn.addEventListener('mouseleave', endPress);
+
+                        btn.addEventListener('touchstart', startPress, { passive: true });
+                        btn.addEventListener('touchend', endPress);
+                        btn.addEventListener('touchcancel', endPress);
+                    });
+                }
+
+                // Settings Modal Handlers
+                if (openSettingsBtn && settingsModal && linksForm) {
+                    openSettingsBtn.addEventListener('click', () => {
+                        getEl('usernameInput').value = currentLinks.username || '';
+                        getEl('tiktokUrlInput').value = currentLinks.tiktok || '';
+                        getEl('youtubeUrlInput').value = currentLinks.youtube || '';
+                        getEl('whatsappUrlInput').value = currentLinks.whatsapp || '';
+                        getEl('discordUrlInput').value = currentLinks.discord || '';
+                        getEl('instagramUrlInput').value = currentLinks.instagram || '';
+                        
+                        // Kosongkan file input setiap kali modal dibuka
+                        const modalLogoInput = getEl('modalLogoInput');
+                        if (modalLogoInput) modalLogoInput.value = '';
+                        
+                        settingsModal.classList.remove('hidden');
+                    });
+
+                    if (closeSettingsBtn) {
+                        closeSettingsBtn.addEventListener('click', () => settingsModal.classList.add('hidden'));
+                    }
+
+                    settingsModal.addEventListener('click', (e) => {
+                        if (e.target === settingsModal) settingsModal.classList.add('hidden');
+                    });
+
+                    linksForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        currentLinks.username = getEl('usernameInput').value || defaultLinks.username;
+                        currentLinks.tiktok = getEl('tiktokUrlInput').value || defaultLinks.tiktok;
+                        currentLinks.youtube = getEl('youtubeUrlInput').value || defaultLinks.youtube;
+                        currentLinks.whatsapp = getEl('whatsappUrlInput').value || defaultLinks.whatsapp;
+                        currentLinks.discord = getEl('discordUrlInput').value || defaultLinks.discord;
+                        currentLinks.instagram = getEl('instagramUrlInput').value || defaultLinks.instagram;
+                        
+                        const modalLogoInput = getEl('modalLogoInput');
+                        
+                        // Fungsi simpan standard
+                        const finishSaving = () => {
+                            try {
+                                localStorage.setItem('mc_bio_links', JSON.stringify(currentLinks));
+                            } catch(err) {
+                                console.error("Gagal menyimpan data", err);
+                            }
+                            applyUrls();
+                            settingsModal.classList.add('hidden');
+                        };
+
+                        // Jika ada file foto yang diunggah
+                        if (modalLogoInput && modalLogoInput.files && modalLogoInput.files[0]) {
+                            const file = modalLogoInput.files[0];
+                            const reader = new FileReader();
+                            reader.onload = function(event) {
+                                currentLinks.logo = event.target.result;
+                                finishSaving(); // Simpan setelah foto berhasil dibaca
+                            };
+                            reader.readAsDataURL(file);
+                        } else {
+                            // Jika tidak ada foto baru, langsung simpan teks link saja
+                            finishSaving();
+                        }
+                    });
+                }
+
+            } catch (globalError) {
+                // Ultimate Fallback: System won't break visibly for users if arbitrary JS fails.
+                console.error("Minecraft Bio Link Core Error:", globalError);
+            }
+        });
+    </script>
+</body>
+</html>
